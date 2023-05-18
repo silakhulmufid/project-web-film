@@ -1,22 +1,65 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import {movieList, searchMovie, genreList, searchGenre} from './api'
+import Searching from './components/searching'
+import PopularMovieList from './components/movies';
+import Navbar from './components/navbar';
+import Genres from './components/genre';
 
-function App() {
+const App = () => {
+
+  const [getGenreList, setGenreList] = useState([])
+  const [getPopularMovies, setPopularMovies] = useState([])
+
+  useEffect(() => {
+    genreList().then((result) => {
+      setGenreList(result.genres)
+      console.log(result.genres)
+    })
+
+    movieList().then(result => {
+      setPopularMovies(result)
+      console.log(result)
+    })
+
+  }, [])
+
   return (
-    <div className="App">
+    <div className='App'>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
+        {/* INI NAVBAR */}
+        <Navbar getGenreList={getGenreList} searchGenre={searchGenre}/>
+
+        {/* INI HEADER */}
+        <div className="row contain-header">
+          <div className="col-12">
+            <h1>Mufid Movie Mania</h1>
+            <Searching setPopularMovies={setPopularMovies} searchMovie={searchMovie}/>
+          </div>
+        </div>
+
+        {/* INI BODY */}
+        <div className="row contain-body">
+
+          {/* INI LEFT COLOUMN "GENRES" */}
+          <div className="col-3 genre-list">
+            <div className="vertical-nav">
+              <nav className="nav flex-column">
+              <Genres getGenreList={getGenreList}/>
+              </nav>
+            </div>
+          </div>
+
+          {/* INI MAIN CONTAIN */}
+          <div className="col-9">
+            <div className="movie-container">
+                <PopularMovieList getPopularMovies={getPopularMovies}/>
+            </div>
+          </div>
+          
+        </div>
+        
       </header>
     </div>
   );
