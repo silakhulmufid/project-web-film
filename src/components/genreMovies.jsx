@@ -4,7 +4,6 @@ const GenreMovieList = (props) => {
       console.log(props.getGenreId, movie.genre_ids)
 
       if (movie.genre_ids.includes(props.getGenreId)) {
-        console.log(movie)
         return (
             <div className="card text-bg-warning" key={i}>
               <div className="card-header movie-title">

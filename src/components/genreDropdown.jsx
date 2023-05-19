@@ -1,3 +1,5 @@
+import { Navigate } from "react-router-dom"
+
 const GenresDropdown = (props) => {
 
     return props.getGenreList.map((genre, i) => {
@@ -6,13 +8,15 @@ const GenresDropdown = (props) => {
             props.setGenreMovie(query.results)
         }
 
+        const handleClick = (e) => {
+            e.preventDefault()
+            searchGenre(genre.name)
+            props.setGenreId(genre.id)
+            console.log(genre.name, genre.id)
+        }
         return (
             <li key={i}>
-                <a className="dropdown-item" href='#' onClick={() => {
-                    searchGenre(genre.name)
-                    props.setGenreId(genre.id)
-                    console.log(genre.name, genre.id)
-                }}>{genre.name}</a>
+                <a className="dropdown-item" href='' onClick={handleClick}>{genre.name}</a>
             </li>
         )
     })

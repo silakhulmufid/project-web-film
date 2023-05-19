@@ -14,7 +14,7 @@ export const popularMovieList = async () => {
 
 export const genreMovieList = async () => {
     const movie = await axios.get(`
-        ${baseUrl}/movie/changes?page=1&api_key=${apiKey}
+        ${baseUrl}/movie/now_playing?page=1&api_key=${apiKey}
     `)
     return movie.data.results
 }

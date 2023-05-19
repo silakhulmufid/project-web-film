@@ -24,8 +24,8 @@
 .nav-link {
   font-size: 18px;
 }
-
 .contain-header {
+  height: 400px;
   padding-top: 80px;
   padding-bottom: 30px;
 }
@@ -35,8 +35,12 @@
 }
 
 .movie-search {
-  width: 500px;
   text-align: center;
+}
+
+.button-search {
+  width: 70px;
+  padding-left: 0px;
 }
 
 .movie-container {
