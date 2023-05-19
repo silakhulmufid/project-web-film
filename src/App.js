@@ -1,14 +1,17 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import {movieList, searchMovie, genreList, searchGenre} from './api'
+import {popularMovieList, searchMovie, genreList, searchGenre} from './api'
 import Searching from './components/searching'
-import PopularMovieList from './components/movies';
+import PopularMovieList from './components/popularMovies';
 import Navbar from './components/navbar';
 import Genres from './components/genre';
+import GenreMovieList from './components/genreMovies';
 
 const App = () => {
 
   const [getGenreList, setGenreList] = useState([])
+  const [getGenreMovie, setGenreMovie] = useState ([])
+  const [getGenreId, setGenreId] = useState ([])
   const [getPopularMovies, setPopularMovies] = useState([])
 
   useEffect(() => {
@@ -17,7 +20,7 @@ const App = () => {
       console.log(result.genres)
     })
 
-    movieList().then(result => {
+    popularMovieList().then(result => {
       setPopularMovies(result)
       console.log(result)
     })
@@ -29,7 +32,7 @@ const App = () => {
       <header className="App-header">
 
         {/* INI NAVBAR */}
-        <Navbar getGenreList={getGenreList} searchGenre={searchGenre}/>
+        <Navbar getGenreList={getGenreList} searchGenre={searchGenre} setGenreMovie={setGenreMovie} setGenreId={setGenreId}/>
 
         {/* INI HEADER */}
         <div className="row contain-header">
@@ -55,6 +58,7 @@ const App = () => {
           <div className="col-9">
             <div className="movie-container">
                 <PopularMovieList getPopularMovies={getPopularMovies}/>
+                <GenreMovieList getGenreMovies={getGenreMovie} getGenreId={getGenreId} />
             </div>
           </div>
           

@@ -5,9 +5,16 @@ import axios from "axios"
 const apiKey = process.env.REACT_APP_APIKEY
 const baseUrl = process.env.REACT_APP_BASEURL
 
-export const movieList = async () => {
+export const popularMovieList = async () => {
     const movie = await axios.get(`
         ${baseUrl}/movie/popular?page=1&api_key=${apiKey}
+    `)
+    return movie.data.results
+}
+
+export const genreMovieList = async () => {
+    const movie = await axios.get(`
+        ${baseUrl}/movie/changes?page=1&api_key=${apiKey}
     `)
     return movie.data.results
 }
@@ -28,7 +35,7 @@ export const genreList = async () => {
 
 export const searchGenre = async (q) => {
     const sGenre = await axios.get(`
-    ${baseUrl}/search/movie?${apiKey}&genre_ids=${99}
+    ${baseUrl}/discover/movie?with_genres=${q}&api_key=${apiKey}
     `)
 
     return sGenre.data

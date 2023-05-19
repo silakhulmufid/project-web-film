@@ -21,7 +21,12 @@ const Navbar = (props) => {
                         Genre
                     </a>
                     <ul className="dropdown-menu">
-                        <GenresDropdown getGenreList={props.getGenreList} setSearchGenre={props.setSearchGenre} searchGenre={props.searchGenre}/>
+                        <GenresDropdown 
+                            getGenreList={props.getGenreList} 
+                            searchGenre={props.searchGenre} 
+                            setGenreMovie={props.setGenreMovie}
+                            setGenreId={props.setGenreId}
+                        />
                     </ul>
                     </li>
                     <li className="nav-item">
